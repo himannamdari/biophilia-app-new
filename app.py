@@ -17,6 +17,9 @@ st.subheader("Your companion for connecting with nature")
 # Simple user authentication
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
+    
+if 'username' not in st.session_state:
+    st.session_state.username = ""
 
 # Login section
 if not st.session_state.logged_in:
@@ -28,7 +31,7 @@ if not st.session_state.logged_in:
         if username and password:  # Very basic validation
             st.session_state.logged_in = True
             st.session_state.username = username
-            st.experimental_rerun()
+            st.rerun()  # Changed from experimental_rerun
 else:
     # Main app content for logged-in users
     st.header(f"Welcome, {st.session_state.username}!")
@@ -76,7 +79,7 @@ else:
         
         if st.button("Log Out"):
             st.session_state.logged_in = False
-            st.experimental_rerun()
+            st.rerun()  # Changed from experimental_rerun
 
 # Footer
 st.sidebar.markdown("---")
